@@ -29,18 +29,24 @@ type ElectricTruck struct {
 }
 
 func (t *NormalTruck) LoadCargo() error {
+	t.cargo += 1
 	return nil
 }
 
 func (t *NormalTruck) UnloadCargo() error {
+	t.cargo = 0
 	return nil
 }
 
-func (t *ElectricTruck) LoadCargo() error {
+func (e *ElectricTruck) LoadCargo() error {
+	e.battery = -1
+	e.cargo += 1
 	return nil
 }
 
-func (t *ElectricTruck) UnloadCargo() error {
+func (e *ElectricTruck) UnloadCargo() error {
+	e.battery = -1
+	e.cargo = 0
 	return nil
 }
 
@@ -58,6 +64,18 @@ func processTruck(truck Truck) error {
 }
 
 func main() {
+
+	person := make(map[string]interface{}, 0)
+	person["name"] = "David"
+	person["age"] = 28
+
+	age, ok := person["age"].(int)
+
+	if !ok {
+		log.Fatal("error property does not exist")
+	}
+
+	fmt.Println(age)
 
 	if err := processTruck(&NormalTruck{id: "1"}); err != nil {
 		log.Fatalf("Error processing truck %s\n", err)
