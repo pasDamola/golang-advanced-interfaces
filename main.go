@@ -65,6 +65,7 @@ func processTruck(truck Truck) error {
 
 func main() {
 
+	// empty interfaces
 	person := make(map[string]interface{}, 0)
 	person["name"] = "David"
 	person["age"] = 28
